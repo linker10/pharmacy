@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content%}
+ <div class="site-wrap">
+
+ <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0"><a href="/index">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Store</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-6">
+            <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
+            <div id="slider-range" class="border-primary"></div>
+            <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
+          </div>
+          <div class="col-lg-6">
+            <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Reference</h3>
+            <button type="button" class="btn btn-secondary btn-md dropdown-toggle px-4" id="dropdownMenuReference"
+              data-toggle="dropdown">Reference</button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+              <a class="dropdown-item" href="#">Relevance</a>
+              <a class="dropdown-item" href="#">Name, A to Z</a>
+              <a class="dropdown-item" href="#">Name, Z to A</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Price, low to high</a>
+              <a class="dropdown-item" href="#">Price, high to low</a>
+            </div>
+          </div>
+        </div>
+<br>
+          <br>
+        <div class="row">
+       {% for product in object_list %}
+          <div class="col-sm-6 col-lg-4 text-center item mb-4" >
+
+            <a href="{{product.get_absolute_url}}">
+                {% if product.image %}
+                <img src="{{product.image.url}}" height="150px" width="250px" alt="Image">
+            </a>
+              {%endif%}
+            <h3 class="text-dark"><a href="{{item.get_absolute_url}}">{{product.title}}</a></h3>
+            <p class="price">
+                   {% if product.discount_price %}
+                  {{ product.discount_price }}
+                  {% else %}
+                  {{ product.price }}
+                  {% endif %}
+<!--                RS{{product.price|floatformat:2}}</p>-->
+          </div>
+          {%endfor%}
+        </div>
+          {%if is_paginated %}
+        <div class="row mt-5">
+          <div class="col-md-12 text-center">
+            <div class="site-block-27">
+              <ul>
+                  {% if page_obj.has_previous%}
+                <li><a href="?page={{page_obj.previous_page_number}}">&lt;</a></li>
+                  {%endif%}
+                <li class="active">
+                  <a class="page-link" href="?page={{page_obj.number}}">{{page_obj.number}} <span class="sr-only">(current) </span></a>
+                   {% if page_obj.has_next%}
+                <li><a href="?page={{page_obj.next_page_number}}">&gt;</a></li>
+                  {%endif%}
+              </ul>
+            </div>
+          </div>
+
+            {%endif%}
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="site-section bg-secondary bg-image" style="background-image: url({% static 'images/bg_2.jpg' %});">
+      <div class="container">
+        <div class="row align-items-stretch">
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url({% static 'images/bg_1.jpg' %});">
+              <div class="banner-1-inner align-self-center">
+                <h2>E-Pharmacy Products</h2>
+                <p>E-Pharmacy is a pharmacy with a difference. Only qualified pharmacists handle all our pharmaceutical products, including procurement, storage, and dispensing.
+                </p>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url({% static 'images/bg_2.jpg' %});">
+              <div class="banner-1-inner ml-auto  align-self-center">
+                <h2>Rated by Experts</h2>
+                <p>Our trusted hospital and laboratory partners include:<strong> <b>sheikh zayed hospital rahim yar khan</b></strong>
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+ </div>
+{%endblock%}
