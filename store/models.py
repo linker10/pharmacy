@@ -7,9 +7,12 @@ from django.shortcuts import reverse
 class Item(models.Model):
     title = models.CharField(max_length=100)
     price = models.FloatField(default=0)
+    salt = models.CharField(max_length=200)
     discount_price = models.FloatField(blank=True, null=True,default=0)
     slug = models.SlugField()
     description = models.TextField()
+    expDate = models.DateTimeField(default=datetime.now, blank=True)
+
     image = models.ImageField(null=True,blank=True)
 
     def __str__(self):
@@ -78,3 +81,20 @@ class Order(models.Model):
             total += order_item.get_final_price()
 
         return total
+
+class Distribuor(models.Model):
+    firstname = models.CharField(max_length=100)
+    lastname = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    contact = models.CharField(max_length=100)
+    cnic = models.CharField(max_length=100)
+    address = models.CharField(max_length=1000)
+    licence = models.CharField(max_length=100)
+    brand = models.CharField(max_length=100)
+    password = models.CharField(max_length=100)
+    password2 = models.CharField(max_length=100)
+
+class Category(models.Model):
+    type=models.CharField(max_length=100)
+
+

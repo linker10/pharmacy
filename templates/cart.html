@@ -70,7 +70,7 @@
 
             {% if order_item.item.discount_price %}
                 Rs{{ order_item.get_total_discount_item_price }}
-                <span class="badge badge-primary">Saving ${{ order_item.get_amount_saved }}</span>
+                <span class="badge badge-primary">Saving rs{{ order_item.get_amount_saved }}</span>
             {% else %}
                 Rs{{ order_item.get_total_item_price }}
             {% endif %}

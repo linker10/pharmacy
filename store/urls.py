@@ -16,6 +16,8 @@ urlpatterns = [
 path('remove-item-from-cart/<slug>/', remove_single_item_from_cart,
          name='remove-single-item-from-cart'),
     path('checkout/', views.checkOut, name='checkout'),
+    path('registration/', views.Pharegister, name='registration'),
+    path('contact/', views.contact, name='contact'),
     path('thankyou/', views.thankyou, name='thankyou'),
 
     path('about', views.about, name='about'),

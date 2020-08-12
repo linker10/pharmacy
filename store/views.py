@@ -141,3 +141,24 @@ def remove_single_item_from_cart(request, slug):
     else:
         messages.info(request, "You do not have an active order")
         return redirect("store:shopsingle", slug=slug)
+
+
+def Pharegister(request):
+    if request.method == "POST":
+        firstname = request.POST.get('name', '')
+        lastname = request.POST.get('email', '')
+        email = request.POST.get('phone', '')
+        contact = request.POST.get('desc', '')
+        cnic = request.POST.get('desc', '')
+        address = request.POST.get('desc', '')
+        licence = request.POST.get('desc', '')
+        brand = request.POST.get('desc', '')
+        password = request.POST.get('desc', '')
+        password2 = request.POST.get('desc', '')
+        distributor = Distribuor(firstname=firstname, lastname=lastname, email=email, contact=contact, cnic=cnic, address=address, licence=licence, brand=brand, password=password, password2=password2)
+        distributor.save()
+        messages.info(request, "Registration complete please check your email address")
+    return render(request, "registration.html")
+
+def contact(request):
+    return render(request,"formpage.html")
